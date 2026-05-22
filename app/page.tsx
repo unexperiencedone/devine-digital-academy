@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   ArrowRight, CheckCircle2, BookOpen, Award,
@@ -12,6 +12,19 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [copiedText, setCopiedText] = useState(false);
   const [copiedCaption, setCopiedCaption] = useState(false);
+  const [showStickyCta, setShowStickyCta] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 450) {
+        setShowStickyCta(true);
+      } else {
+        setShowStickyCta(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const siteUrl = "https://devinedigitalacademy.co.in";
 
@@ -944,6 +957,20 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* STICKY BOTTOM MOBILE CTA */}
+      <div className={`sticky-mobile-cta ${showStickyCta ? 'visible' : ''}`}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.62rem', color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Devine Academy</span>
+          <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', display: 'flex', alignItems: 'center', gap: 6 }}>
+            ₹999
+            <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--slate)', textDecoration: 'line-through' }}>₹10,000</span>
+          </span>
+        </div>
+        <a href={ENROLL_LINK} onClick={trackEnrollClick} className="sticky-mobile-cta-btn">
+          Enroll Now <ArrowRight size={14} />
+        </a>
+      </div>
     </div>
   );
 }

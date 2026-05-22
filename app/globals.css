@@ -665,5 +665,63 @@ body {
   transform: translateY(-1px);
 }
 
+/* STICKY MOBILE CTA */
+.sticky-mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 20px;
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--mist);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  opacity: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sticky-mobile-cta.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sticky-mobile-cta-btn {
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 12px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(201, 168, 76, 0.35);
+  transition: all 0.25s ease;
+  border: none;
+  outline: none;
+  justify-content: center;
+  min-width: 130px;
+  text-align: center;
+}
+
+.sticky-mobile-cta-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .sticky-mobile-cta {
+    display: flex;
+  }
+}
+
 
 
