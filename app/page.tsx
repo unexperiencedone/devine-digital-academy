@@ -34,7 +34,7 @@ export default function Home() {
     { name: "Instagram Ads", logo: "/instagram.png" },
     { name: "Canva", logo: "/canva.png" },
     { name: "InVideo AI", logo: "/invideo.png" },
-    { name: "Gamma App", icon: "⚡" },
+    { name: "Gamma App", logo: "/gamma.png" },
     { name: "25+ AI Tools", icon: "✨" },
   ];
 
