@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   creator: "Mr. Vivek Maurya",
   publisher: "Devine Digital Academy",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "/devine_logo.png",
+    shortcut: "/devine_logo.png",
     apple: "/devine_logo.png",
   },
   keywords: [

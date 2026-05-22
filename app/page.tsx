@@ -2,9 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  ArrowRight, CheckCircle2,
-  Users, BookOpen, Award, Briefcase, TrendingUp,
-  Shield, Globe, Laptop, ChevronDown
+  ArrowRight, CheckCircle2, BookOpen, Award,
+  Shield, Globe, ChevronDown
 } from "lucide-react";
 
 const ENROLL_LINK = "https://rzp.io/rzp/G9oTVv8Z";
@@ -90,11 +89,11 @@ export default function Home() {
   ];
 
   const audience = [
-    { icon: <BookOpen size={22} />, title: "Students", desc: "Build income before graduation" },
-    { icon: <Users size={22} />, title: "Housewives", desc: "Earn on your own schedule from home" },
-    { icon: <Briefcase size={22} />, title: "Job Seekers", desc: "A skill set that gets you hired fast" },
-    { icon: <TrendingUp size={22} />, title: "Professionals", desc: "Add a revenue stream to your career" },
-    { icon: <Laptop size={22} />, title: "WFH Aspirants", desc: "Location-independent digital career" },
+    { image: "/students.png", title: "Students", desc: "Build income before graduation" },
+    { image: "/housewives.png", title: "Housewives", desc: "Earn on your own schedule from home" },
+    { image: "/job seekers.png", title: "Job Seekers", desc: "A skill set that gets you hired fast" },
+    { image: "/professionals.png", title: "Professionals", desc: "Add a revenue stream to your career" },
+    { image: "/wfh.png", title: "WFH Aspirants", desc: "Location-independent digital career" },
   ];
 
   const outcomes = [
@@ -293,10 +292,18 @@ export default function Home() {
           </div>
           <div className="audience-grid">
             {audience.map((a, i) => (
-              <div key={i} className="card-hover" style={{ background: 'var(--cream)', border: '1px solid var(--mist)', borderRadius: 12, padding: '32px 20px', textAlign: 'center' }}>
-                <div style={{ width: 52, height: 52, background: 'var(--ink)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--gold)' }}>{a.icon}</div>
-                <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--ink)', marginBottom: 8 }}>{a.title}</div>
-                <div style={{ color: 'var(--slate)', fontSize: '0.85rem', lineHeight: 1.5 }}>{a.desc}</div>
+              <div key={i} className="card-hover" style={{ background: 'var(--ink)', border: '1px solid rgba(201,168,76,0.25)', borderRadius: 12, padding: '24px 20px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', borderRadius: 8, overflow: 'hidden', marginBottom: 16, border: '1px solid rgba(255,255,255,0.06)' }}>
+                  <Image
+                    src={a.image}
+                    alt={a.title}
+                    fill
+                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1199px) 33vw, 200px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--gold-light)', marginBottom: 8 }}>{a.title}</div>
+                <div style={{ color: 'rgba(250,247,242,0.78)', fontSize: '0.85rem', lineHeight: 1.5 }}>{a.desc}</div>
               </div>
             ))}
           </div>
