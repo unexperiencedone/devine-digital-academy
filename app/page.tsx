@@ -11,6 +11,48 @@ const ENROLL_LINK = "https://rzp.io/rzp/G9oTVv8Z";
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [copiedText, setCopiedText] = useState(false);
+  const [copiedCaption, setCopiedCaption] = useState(false);
+
+  const siteUrl = "https://devinedigitalacademy.co.in";
+
+  const sharePresets = [
+    {
+      id: "value",
+      label: "💰 Price & Skills Value",
+      tagline: "Unbeatable price for elite marketing skills",
+      description: "Get full practical training in Ads setup, client closing, and freelancing for just ₹999 instead of ₹15,000.",
+      message: "🚀 Why pay ₹15,000+ for digital marketing training? Master Facebook Ads, Google Ads, Lead Generation & Freelancing in Hindi for just ₹999! Taught by Mr. Vivek Maurya (12+ years experience) with 100% practical, video-based training. Lifetime access & certificate included!",
+    },
+    {
+      id: "mentor",
+      label: "🎓 Expert Mentor Skillset",
+      tagline: "Learn directly from a 12+ years expert",
+      description: "Mr. Vivek Maurya teaches the exact marketing framework he uses to generate multi-crore revenue.",
+      message: "🔥 Learn digital marketing from a true expert! Mr. Vivek Maurya (Co-Founder, Devine Digital Academy) is sharing his 12+ years of performance marketing experience in a complete practical course for only ₹999. Learn live ad setups, client acquisition, and high-income freelancing!",
+    },
+    {
+      id: "wfh",
+      label: "🏡 Work From Home",
+      tagline: "Ideal path for students & housewives",
+      description: "Build an independent freelance career and earn side income on your own schedule.",
+      message: "💻 Want to work from home and earn a steady side income? Perfect for students and housewives! Learn high-demand digital marketing skills & client closing from 12+ years expert Mr. Vivek Maurya for just ₹999. Get certified and start freelancing from your mobile or laptop!",
+    }
+  ];
+
+  const [activePreset, setActivePreset] = useState(sharePresets[0]);
+
+  const handleCopyPreset = () => {
+    navigator.clipboard.writeText(`${activePreset.message}\n\nJoin here: ${siteUrl}`);
+    setCopiedText(true);
+    setTimeout(() => setCopiedText(false), 2000);
+  };
+
+  const handleCopyCaption = () => {
+    navigator.clipboard.writeText(`${activePreset.message}\n\n#DevineDigitalAcademy #DigitalMarketing #WorkFromHome #FreelancingIndia #LearnInHindi #FacebookAds #GoogleAds`);
+    setCopiedCaption(true);
+    setTimeout(() => setCopiedCaption(false), 2000);
+  };
 
   const curriculum = [
     { no: "01", title: "Digital Marketing Fundamentals", desc: "Core concepts that underpin every successful campaign" },
@@ -606,6 +648,207 @@ export default function Home() {
               </div>
             </div>
             <div style={{ color: 'rgba(15,14,12,0.45)', fontSize: '0.85rem', marginTop: 24 }}>Issued upon successful course completion</div>
+        </div>
+      </section>
+
+      {/* SOCIAL SHARE SECTION */}
+      <section className="section-padding" style={{ background: 'var(--warm-white)', borderTop: '1px solid var(--mist)', borderBottom: '1px solid var(--mist)' }}>
+        <div style={{ maxWidth: 1000, margin: '0 auto', padding: '0 16px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 48 }}>
+            <div className="section-tag" style={{ background: 'rgba(42,92,69,0.08)', color: 'var(--accent)', borderColor: 'rgba(42,92,69,0.2)' }}>Spread the Word</div>
+            <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 700, color: 'var(--ink)' }}>
+              Help Others Master High-Value Skills
+            </h2>
+            <p style={{ color: 'var(--slate)', marginTop: 12, fontSize: '1.05rem', maxWidth: 620, margin: '12px auto 0', lineHeight: 1.7 }}>
+              Know a student, housewife, or job seeker who wants to build a successful digital career? Share this course with them. For just <strong style={{ color: 'var(--ink)' }}>₹999</strong>, they get lifetime access to <strong style={{ color: 'var(--ink)' }}>12+ years of expertise</strong>. Quality skill development should be accessible to everyone!
+            </p>
+          </div>
+
+          <div className="share-hub-grid">
+            {/* Column 1: Presets & Platform buttons */}
+            <div className="share-controls-card">
+              <h3 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--ink)', marginBottom: 16 }}>1. Select a Sharing Message Angle</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+                {sharePresets.map((preset) => (
+                  <button
+                    key={preset.id}
+                    onClick={() => setActivePreset(preset)}
+                    className={`preset-tab-btn ${activePreset.id === preset.id ? 'active' : ''}`}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                      <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>{preset.label}</span>
+                      {activePreset.id === preset.id && <span style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: 700 }}>● Active</span>}
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: activePreset.id === preset.id ? 'var(--slate)' : 'rgba(74,72,69,0.7)', marginTop: 4, textAlign: 'left' }}>
+                      {preset.tagline}
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              <h3 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--ink)', marginBottom: 16 }}>2. Share or Copy Details</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  {/* WhatsApp */}
+                  <a
+                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(activePreset.message + "\n\nJoin here: " + siteUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-platform-btn share-wa"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.019-5.114-2.875-6.973C16.588 1.909 14.11 1.15 12.01 1.15c-5.44 0-9.865 4.42-9.869 9.866-.001 1.777.464 3.51 1.346 5.035L2.43 20.317l4.217-1.163zM18.22 15.71c-.3-.15-1.782-.88-2.062-.982-.28-.1-.484-.15-.688.15-.204.3-.79.982-.969 1.185-.18.203-.359.23-.659.08-1.09-.54-1.92-1.02-2.68-2.33-.2-.35-.04-.54.11-.69.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.688-1.66-.943-2.27-.248-.6-.508-.52-.688-.53-.178-.01-.382-.01-.587-.01-.205 0-.537.08-.817.388-.28.308-1.07 1.045-1.07 2.55 0 1.506 1.096 2.96 1.247 3.16.15.2 2.155 3.29 5.22 4.61.73.31 1.3.5 1.74.64.733.23 1.4.2 1.92.12.58-.09 1.782-.73 2.03-1.43.25-.7.25-1.29.17-1.43-.07-.14-.27-.22-.57-.37z"/>
+                    </svg>
+                    WhatsApp
+                  </a>
+
+                  {/* Telegram */}
+                  <a
+                    href={`https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(activePreset.message)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-platform-btn share-tg"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                    </svg>
+                    Telegram
+                  </a>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  {/* Threads */}
+                  <a
+                    href={`https://threads.net/intent/post?text=${encodeURIComponent(activePreset.message + "\n\nJoin here: " + siteUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-platform-btn share-threads"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M12.002 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.398 17.202h-2.148l-3.32-4.475-3.32 4.475H5.464l4.474-6.03L5.614 5.202h2.152l3.072 4.14 3.07-4.14h2.152l-4.225 5.694 4.567 6.306z"/>
+                    </svg>
+                    Threads
+                  </a>
+
+                  {/* Twitter / X */}
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(activePreset.message)}&url=${encodeURIComponent(siteUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-platform-btn share-x"
+                  >
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Twitter / X
+                  </a>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  {/* Facebook */}
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-platform-btn share-fb"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Facebook
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-platform-btn share-li"
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                      <path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9H7.12v11.45zM5.34 7.43c-1.14 0-2.06-.92-2.06-2.06 0-1.14.92-2.06 2.06-2.06 1.14 0 2.06.92 2.06 2.06 0 1.14-.92 2.06-2.06 2.06zm15.11 13.02h-3.56v-5.6c0-1.34-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.7h-3.56V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29z"/>
+                    </svg>
+                    LinkedIn
+                  </a>
+                </div>
+
+                {/* Primary Copy Button */}
+                <button
+                  onClick={handleCopyPreset}
+                  className="share-hub-copy-primary"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  {copiedText ? "Message & Link Copied! 🚀" : "Copy Message & Link"}
+                </button>
+              </div>
+            </div>
+
+            {/* Column 2: Simulated Live Preview */}
+            <div className="share-preview-card">
+              <h3 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--ink)', marginBottom: 16 }}>Live Share Preview</h3>
+              <div className="simulated-bubble">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {/* Prefilled Text Preview */}
+                  <div style={{ color: 'var(--ink)', fontSize: '0.88rem', background: '#FDFBF7', padding: '12px 14px', borderRadius: '12px 12px 0 12px', border: '1px solid var(--mist)', lineHeight: 1.5, position: 'relative', wordBreak: 'break-word', whiteSpace: 'pre-wrap', textAlign: 'left' }}>
+                    {activePreset.message}
+                    <div style={{ color: 'var(--gold)', marginTop: 8, fontWeight: 700 }}>
+                      Join here: https://devinedigitalacademy.co.in
+                    </div>
+                  </div>
+
+                  {/* Simulated Rich Link Card */}
+                  <div style={{ background: '#FAF8F5', border: '1px solid var(--mist)', borderRadius: 12, overflow: 'hidden', maxWidth: 360, alignSelf: 'flex-end', display: 'flex', flexDirection: 'column', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', textAlign: 'left' }}>
+                    <div style={{ position: 'relative', width: '100%', height: 180, background: 'var(--ink)' }}>
+                      <Image
+                        src="/devine_logo.png"
+                        alt="Devine Digital Academy Preview"
+                        fill
+                        style={{ objectFit: 'contain', padding: 20 }}
+                      />
+                    </div>
+                    <div style={{ padding: '12px 14px', borderTop: '1px solid var(--mist)' }}>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--slate)', fontFamily: 'DM Mono, monospace', letterSpacing: '0.02em', textTransform: 'uppercase', marginBottom: 2 }}>devinedigitalacademy.co.in</div>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ink)', lineHeight: 1.3, marginBottom: 4 }}>Master Digital Marketing &amp; Start Freelancing for just ₹999</div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--slate)', lineHeight: 1.4 }}>{activePreset.description}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Instagram Helper Section */}
+              <div className="insta-helper-card" style={{ marginTop: 24 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                  <span style={{ fontSize: '1.25rem' }}>📸</span>
+                  <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)' }}>Instagram Sharing Guide</div>
+                </div>
+                <p style={{ fontSize: '0.8rem', color: 'var(--slate)', lineHeight: 1.5, marginBottom: 12, textAlign: 'left' }}>
+                  Instagram doesn&apos;t support direct links in post captions. Use this curated text block with hashtags for your Post, Reels, or Story caption:
+                </p>
+                <div style={{ background: 'rgba(255,255,255,0.6)', border: '1px solid var(--mist)', borderRadius: 8, padding: 12, fontSize: '0.78rem', color: 'var(--slate)', fontFamily: 'DM Sans, sans-serif', wordBreak: 'break-word', maxHeight: 90, overflowY: 'auto', marginBottom: 12, lineHeight: 1.4, textAlign: 'left' }}>
+                  {activePreset.message} #DevineDigitalAcademy #DigitalMarketing #WorkFromHome #FreelancingIndia #LearnInHindi #FacebookAds #GoogleAds
+                </div>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  <button
+                    onClick={handleCopyCaption}
+                    className="insta-copy-btn"
+                  >
+                    Copy Instagram Caption {copiedCaption ? "✓" : ""}
+                  </button>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="insta-launch-btn"
+                  >
+                    Open Instagram
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
