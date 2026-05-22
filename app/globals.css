@@ -148,6 +148,9 @@ body {
   .nav-link {
     display: none;
   }
+  .nav-enroll-btn {
+    display: none;
+  }
 }
 
 .section-padding {

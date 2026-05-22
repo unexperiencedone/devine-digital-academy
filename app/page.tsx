@@ -212,7 +212,7 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
             <a href="#curriculum" className="nav-link">Curriculum</a>
             <a href="#mentor" className="nav-link">Mentor</a>
-            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
+            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary nav-enroll-btn" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
               Enroll — ₹999
             </a>
           </div>
@@ -994,7 +994,7 @@ export default function Home() {
       {/* STICKY BOTTOM MOBILE CTA */}
       <div className={`sticky-mobile-cta ${showStickyCta ? 'visible' : ''}`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.62rem', color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Devine Academy</span>
+          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '0.62rem', color: 'var(--slate)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Devine Digital Academy</span>
           <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--ink)', display: 'flex', alignItems: 'center', gap: 6 }}>
             ₹999
             <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--slate)', textDecoration: 'line-through' }}>₹10,000</span>
