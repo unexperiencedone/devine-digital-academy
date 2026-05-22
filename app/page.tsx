@@ -562,7 +562,7 @@ export default function Home() {
               <div className="bento-video-wrapper-main">
                 <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
                   <iframe
-                    src="https://www.youtube.com/embed/2wx8YFyenbc"
+                    src="https://www.youtube-nocookie.com/embed/2wx8YFyenbc"
                     title="Promo Video"
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -583,7 +583,7 @@ export default function Home() {
               <div className="bento-video-wrapper-short">
                 <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
                   <iframe
-                    src="https://www.youtube.com/embed/YqWambOuoC0"
+                    src="https://www.youtube-nocookie.com/embed/YqWambOuoC0"
                     title="Aarti Rai Review"
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -602,7 +602,7 @@ export default function Home() {
               <div className="bento-video-wrapper-short">
                 <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
                   <iframe
-                    src="https://www.youtube.com/embed/eQh4P4bl5TA"
+                    src="https://www.youtube-nocookie.com/embed/eQh4P4bl5TA"
                     title="Doshant Singh Review"
                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
