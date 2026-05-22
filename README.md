@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Devine Digital Academy Landing Page
 
-## Getting Started
+Welcome to the official repository for the **Devine Digital Academy** landing page. This is a high-converting, premium-design React landing page built with **Next.js (App Router)** and **TypeScript**, styled using **Vanilla CSS**.
 
-First, run the development server:
+It is designed to showcase the Digital Marketing Certification course led by co-founder **Mr. Vivek Maurya**, featuring 30 video lessons, live setups, and AI tool integrations.
 
+## ✨ Features
+- **Modern Bento Grid**: Features student success testimonials and video setups embedded via customized responsive YouTube iFrames.
+- **Premium Styling**: Deep charcoal and warm gold color palette with smooth gradients, custom floating logo animations, and glassmorphism.
+- **SEO & Performance Optimized**: Fully semantic structure, responsive layouts, and zero external runtime dependencies for visual components.
+- **Next.js & TypeScript**: Structured using modern Next.js practices.
+
+## 🛠️ Tech Stack
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Vanilla CSS (`app/globals.css`)
+- **Icons**: Lucide React
+- **Media**: Premium optimized assets
+
+## 🚀 Getting Started
+
+First, install dependencies:
+```bash
+npm install
+```
+
+Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Testing and Verification
+The repository contains an automated verification suite to assert content integrity, check for build compiler errors, and run ESLint checks:
+```bash
+npm test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+This repository is licensed under a proprietary owner license. See [LICENSE](LICENSE) for more details.
