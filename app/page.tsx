@@ -323,117 +323,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GOOGLE TESTIMONIALS */}
-      <section id="reviews" className="section-padding" style={{ background: 'var(--cream)', borderTop: '1px solid var(--mist)', borderBottom: '1px solid var(--mist)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <div className="section-tag" style={{ background: 'rgba(201,168,76,0.1)', color: 'var(--gold)', borderColor: 'rgba(201,168,76,0.2)' }}>Reviews</div>
-            <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 700, color: 'var(--ink)' }}>
-              See How My Students Increased Their Leads &amp; Sales
-            </h2>
-            <p style={{ color: 'var(--slate)', marginTop: 12, fontSize: '1.05rem' }}>Skill-Based Learning That Converts Into Income</p>
-          </div>
-          <div className="testimonials-grid">
-            {reviews.map((rev, i) => (
-              <div key={i} className="card-hover" style={{ background: 'var(--warm-white)', border: '1px solid var(--mist)', borderRadius: 12, padding: '24px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 2, color: '#f59e0b', marginBottom: 12 }}>
-                    {Array(5).fill("★").map((star, idx) => (
-                      <span key={idx} style={{ fontSize: '1rem' }}>{star}</span>
-                    ))}
-                  </div>
-                  <p style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.6, fontStyle: 'italic', marginBottom: 16 }}>
-                    &quot;{rev.text}&quot;
-                  </p>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, borderTop: '1px solid var(--cream)', paddingTop: 12 }}>
-                  <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'var(--ink)', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: '0.85rem' }}>
-                    {rev.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--ink)' }}>{rev.name}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--slate)', fontFamily: 'DM Mono, monospace' }}>{rev.date}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* VIDEO TESTIMONIALS */}
-      <section className="section-padding" style={{ background: 'var(--ink)', color: 'var(--cream)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <div className="section-tag" style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--gold)', borderColor: 'rgba(255,255,255,0.1)' }}>Video Proof</div>
-            <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 700, color: 'var(--warm-white)' }}>
-              Real Faces. Real Stories. Real Trust.
-            </h2>
-            <p style={{ color: 'rgba(250,247,242,0.6)', marginTop: 12, fontSize: '1.05rem' }}>Watch success reviews from our active students</p>
-          </div>
-          
-          <div className="bento-grid">
-            {/* Promo Video Card (Bento span 2) */}
-            <div className="bento-card-main">
-              <div className="bento-video-wrapper-main">
-                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/2wx8YFyenbc"
-                    title="Promo Video"
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--warm-white)', marginBottom: 8 }}>Mr. Vivek Maurya — Course Overview &amp; Strategy</div>
-                <p style={{ fontSize: '0.88rem', color: 'rgba(250,247,242,0.65)', lineHeight: 1.6, maxWidth: 520, margin: '0 auto' }}>
-                  Learn how our mobile-app training helps you build high-value freelancing skills from home. Not just theory, but real campaign setups.
-                </p>
-              </div>
-            </div>
-            
-            {/* Aarti Rai Short Card */}
-            <div className="bento-card-short">
-              <div className="bento-video-wrapper-short">
-                <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/YqWambOuoC0"
-                    title="Aarti Rai Review"
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-              <div style={{ marginTop: 16, textAlign: 'center' }}>
-                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--warm-white)', marginBottom: 4 }}>Aarti Rai</div>
-                <p style={{ fontSize: '0.78rem', color: 'rgba(250,247,242,0.5)', lineHeight: 1.5 }}>Success story of lead gen &amp; digital marketing course completion.</p>
-              </div>
-            </div>
-
-            {/* Doshant Singh Short Card */}
-            <div className="bento-card-short">
-              <div className="bento-video-wrapper-short">
-                <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/eQh4P4bl5TA"
-                    title="Doshant Singh Review"
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-              <div style={{ marginTop: 16, textAlign: 'center' }}>
-                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--warm-white)', marginBottom: 4 }}>Doshant Singh</div>
-                <p style={{ fontSize: '0.78rem', color: 'rgba(250,247,242,0.5)', lineHeight: 1.5 }}>Student shares his results running ads and closing remote clients.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CURRICULUM */}
       <section id="curriculum" className="section-padding" style={{ background: 'var(--ink)', color: 'var(--cream)' }}>
@@ -613,6 +503,118 @@ export default function Home() {
             <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.1rem' }}>
               Invest in Yourself Today <ArrowRight size={18} />
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* GOOGLE TESTIMONIALS */}
+      <section id="reviews" className="section-padding" style={{ background: 'var(--cream)', borderTop: '1px solid var(--mist)', borderBottom: '1px solid var(--mist)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 48 }}>
+            <div className="section-tag" style={{ background: 'rgba(201,168,76,0.1)', color: 'var(--gold)', borderColor: 'rgba(201,168,76,0.2)' }}>Reviews</div>
+            <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 700, color: 'var(--ink)' }}>
+              See How My Students Increased Their Leads &amp; Sales
+            </h2>
+            <p style={{ color: 'var(--slate)', marginTop: 12, fontSize: '1.05rem' }}>Skill-Based Learning That Converts Into Income</p>
+          </div>
+          <div className="testimonials-grid">
+            {reviews.map((rev, i) => (
+              <div key={i} className="card-hover" style={{ background: 'var(--warm-white)', border: '1px solid var(--mist)', borderRadius: 12, padding: '24px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 2, color: '#f59e0b', marginBottom: 12 }}>
+                    {Array(5).fill("★").map((star, idx) => (
+                      <span key={idx} style={{ fontSize: '1rem' }}>{star}</span>
+                    ))}
+                  </div>
+                  <p style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.6, fontStyle: 'italic', marginBottom: 16 }}>
+                    &quot;{rev.text}&quot;
+                  </p>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, borderTop: '1px solid var(--cream)', paddingTop: 12 }}>
+                  <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'var(--ink)', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: '0.85rem' }}>
+                    {rev.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--ink)' }}>{rev.name}</div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--slate)', fontFamily: 'DM Mono, monospace' }}>{rev.date}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEO TESTIMONIALS */}
+      <section className="section-padding" style={{ background: 'var(--ink)', color: 'var(--cream)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 48 }}>
+            <div className="section-tag" style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--gold)', borderColor: 'rgba(255,255,255,0.1)' }}>Video Proof</div>
+            <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 700, color: 'var(--warm-white)' }}>
+              Real Faces. Real Stories. Real Trust.
+            </h2>
+            <p style={{ color: 'rgba(250,247,242,0.6)', marginTop: 12, fontSize: '1.05rem' }}>Watch success reviews from our active students</p>
+          </div>
+          
+          <div className="bento-grid">
+            {/* Promo Video Card (Bento span 2) */}
+            <div className="bento-card-main">
+              <div className="bento-video-wrapper-main">
+                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/2wx8YFyenbc"
+                    title="Promo Video"
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--warm-white)', marginBottom: 8 }}>Mr. Vivek Maurya — Course Overview &amp; Strategy</div>
+                <p style={{ fontSize: '0.88rem', color: 'rgba(250,247,242,0.65)', lineHeight: 1.6, maxWidth: 520, margin: '0 auto' }}>
+                  Learn how our mobile-app training helps you build high-value freelancing skills from home. Not just theory, but real campaign setups.
+                </p>
+              </div>
+            </div>
+            
+            {/* Aarti Rai Short Card */}
+            <div className="bento-card-short">
+              <div className="bento-video-wrapper-short">
+                <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/YqWambOuoC0"
+                    title="Aarti Rai Review"
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div style={{ marginTop: 16, textAlign: 'center' }}>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--warm-white)', marginBottom: 4 }}>Aarti Rai</div>
+                <p style={{ fontSize: '0.78rem', color: 'rgba(250,247,242,0.5)', lineHeight: 1.5 }}>Success story of lead gen &amp; digital marketing course completion.</p>
+              </div>
+            </div>
+
+            {/* Doshant Singh Short Card */}
+            <div className="bento-card-short">
+              <div className="bento-video-wrapper-short">
+                <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/eQh4P4bl5TA"
+                    title="Doshant Singh Review"
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div style={{ marginTop: 16, textAlign: 'center' }}>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--warm-white)', marginBottom: 4 }}>Doshant Singh</div>
+                <p style={{ fontSize: '0.78rem', color: 'rgba(250,247,242,0.5)', lineHeight: 1.5 }}>Student shares his results running ads and closing remote clients.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
