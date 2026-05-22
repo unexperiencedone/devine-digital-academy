@@ -13,6 +13,54 @@ export default function Home() {
   const [copiedText, setCopiedText] = useState(false);
   const [copiedCaption, setCopiedCaption] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
+  const [activeVideos, setActiveVideos] = useState<Record<string, boolean>>({});
+
+  const renderVideo = (videoId: string, title: string, aspectRatio: string = "56.25%") => {
+    const isPlay = activeVideos[videoId];
+    if (isPlay) {
+      return (
+        <div style={{ position: 'relative', paddingBottom: aspectRatio, height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
+            title={title}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      );
+    }
+
+    const getThumbnailUrl = (id: string) => {
+      if (id === "2wx8YFyenbc") {
+        return `https://img.youtube.com/vi/${id}/sddefault.jpg`;
+      }
+      return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    };
+
+    return (
+      <div 
+        onClick={() => setActiveVideos(prev => ({ ...prev, [videoId]: true }))}
+        className="video-facade-container"
+        style={{ position: 'relative', paddingBottom: aspectRatio, height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)', cursor: 'pointer' }}
+      >
+        <Image
+          src={getThumbnailUrl(videoId)}
+          alt={title}
+          fill
+          sizes={aspectRatio === "56.25%" ? "(max-width: 768px) 320px, 420px" : "(max-width: 768px) 180px, 230px"}
+          style={{ objectFit: 'cover' }}
+          className="video-facade-thumbnail"
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)' }} />
+        <div className="video-facade-play-btn">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -200,6 +248,8 @@ export default function Home() {
                       src="/devine_logo.png"
                       alt="Devine Digital Academy Hero Logo"
                       fill
+                      priority
+                      sizes="(max-width: 500px) 100vw, 300px"
                       style={{
                         objectFit: 'contain',
                         filter: 'drop-shadow(0 8px 24px rgba(201,168,76,0.35))'
@@ -243,6 +293,8 @@ export default function Home() {
                     src="/devine_logo.png"
                     alt="Devine Digital Academy Hero Logo"
                     fill
+                    priority
+                    sizes="300px"
                     style={{
                       objectFit: 'contain',
                       filter: 'drop-shadow(0 8px 24px rgba(201,168,76,0.35))'
@@ -422,6 +474,7 @@ export default function Home() {
                   src="/devine_mentor.jpeg"
                   alt="Mr. Vivek Maurya"
                   fill
+                  sizes="(max-width: 768px) 100vw, 450px"
                   style={{
                     objectFit: 'cover',
                     objectPosition: 'top center'
@@ -560,15 +613,7 @@ export default function Home() {
             {/* Promo Video Card (Bento span 2) */}
             <div className="bento-card-main">
               <div className="bento-video-wrapper-main">
-                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/2wx8YFyenbc"
-                    title="Promo Video"
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
+                {renderVideo("2wx8YFyenbc", "Promo Video", "56.25%")}
               </div>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--warm-white)', marginBottom: 8 }}>Mr. Vivek Maurya — Course Overview &amp; Strategy</div>
@@ -581,15 +626,7 @@ export default function Home() {
             {/* Aarti Rai Short Card */}
             <div className="bento-card-short">
               <div className="bento-video-wrapper-short">
-                <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/YqWambOuoC0"
-                    title="Aarti Rai Review"
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
+                {renderVideo("YqWambOuoC0", "Aarti Rai Review", "177.77%")}
               </div>
               <div style={{ marginTop: 16, textAlign: 'center' }}>
                 <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--warm-white)', marginBottom: 4 }}>Aarti Rai</div>
@@ -600,15 +637,7 @@ export default function Home() {
             {/* Doshant Singh Short Card */}
             <div className="bento-card-short">
               <div className="bento-video-wrapper-short">
-                <div style={{ position: 'relative', paddingBottom: '177.77%', height: 0, overflow: 'hidden', borderRadius: 8, boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }}>
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/eQh4P4bl5TA"
-                    title="Doshant Singh Review"
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
+                {renderVideo("eQh4P4bl5TA", "Doshant Singh Review", "177.77%")}
               </div>
               <div style={{ marginTop: 16, textAlign: 'center' }}>
                 <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--warm-white)', marginBottom: 4 }}>Doshant Singh</div>
@@ -669,6 +698,7 @@ export default function Home() {
                   src="/devine_certificate.jpg"
                   alt="Devine Digital Academy Certificate Sample"
                   fill
+                  sizes="(max-width: 768px) 100vw, 540px"
                   style={{
                     borderRadius: 8,
                     border: '1px solid rgba(201,168,76,0.3)',
@@ -837,6 +867,7 @@ export default function Home() {
                         src="/devine_logo.png"
                         alt="Devine Digital Academy Preview"
                         fill
+                        sizes="360px"
                         style={{ objectFit: 'contain', padding: 20 }}
                       />
                     </div>
