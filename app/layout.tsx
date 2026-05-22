@@ -145,18 +145,53 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${dmMono.variable}`}>
       <head />
       <body>
-        <Script id="fb-pixel" strategy="lazyOnload">
+        <Script id="fb-pixel" strategy="afterInteractive">
           {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1951169009066747');
-            fbq('track', 'PageView');
+            (function() {
+              // 1. Define the stub immediately so fbq is defined right away
+              if (!window.fbq) {
+                var n = window.fbq = function() {
+                  n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                };
+                if (!window._fbq) window._fbq = n;
+                n.push = n;
+                n.loaded = true;
+                n.version = '2.0';
+                n.queue = [];
+              }
+              
+              var fbScriptLoaded = false;
+              function loadFbScript() {
+                if (fbScriptLoaded) return;
+                fbScriptLoaded = true;
+                
+                // Clean up event listeners
+                window.removeEventListener('scroll', loadFbScript);
+                window.removeEventListener('click', loadFbScript);
+                window.removeEventListener('touchstart', loadFbScript);
+                window.removeEventListener('mousemove', loadFbScript);
+                
+                // Load the external script
+                var t = document.createElement('script');
+                t.async = true;
+                t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(t, s);
+              }
+              
+              // 2. Queue the initialization events immediately
+              fbq('init', '1951169009066747');
+              fbq('track', 'PageView');
+              
+              // 3. Set up listeners for user interaction to trigger loading fbevents.js
+              window.addEventListener('scroll', loadFbScript, { passive: true });
+              window.addEventListener('click', loadFbScript, { passive: true });
+              window.addEventListener('touchstart', loadFbScript, { passive: true });
+              window.addEventListener('mousemove', loadFbScript, { passive: true });
+              
+              // Fallback timeout to initialize after 4 seconds if no interaction
+              setTimeout(loadFbScript, 4000);
+            })();
           `}
         </Script>
         <noscript>
