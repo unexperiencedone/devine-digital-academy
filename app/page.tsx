@@ -16,6 +16,15 @@ export default function Home() {
 
   const siteUrl = "https://devinedigitalacademy.co.in";
 
+  const trackEnrollClick = () => {
+    if (typeof window !== "undefined") {
+      const fbWindow = window as unknown as { fbq?: (event: string, action: string) => void };
+      if (fbWindow.fbq) {
+        fbWindow.fbq('track', 'InitiateCheckout');
+      }
+    }
+  };
+
   const sharePresets = [
     {
       id: "value",
@@ -143,7 +152,7 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
             <a href="#curriculum" className="nav-link">Curriculum</a>
             <a href="#mentor" className="nav-link">Mentor</a>
-            <a href={ENROLL_LINK} className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
+            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
               Enroll — ₹999
             </a>
           </div>
@@ -203,7 +212,7 @@ export default function Home() {
                 ))}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-                <a href={ENROLL_LINK} className="btn-primary" style={{ fontSize: '1.1rem', padding: '16px 44px' }}>
+                <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.1rem', padding: '16px 44px' }}>
                   Enroll Now — Just ₹999 <ArrowRight size={18} />
                 </a>
                 <div style={{ color: 'rgba(250,247,242,0.5)', fontSize: '0.85rem' }}>
@@ -419,7 +428,7 @@ export default function Home() {
               <p style={{ color: 'rgba(250,247,242,0.65)', lineHeight: 1.75, marginBottom: 32 }}>
                 Every module is built around practical execution. You learn by doing, watching real campaigns, and following step-by-step systems that work in the Indian market.
               </p>
-              <a href={ENROLL_LINK} className="btn-primary">
+              <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary">
                 Start Learning — ₹999 <ArrowRight size={16} />
               </a>
             </div>
@@ -581,7 +590,7 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginTop: 56 }}>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', color: 'var(--warm-white)', marginBottom: 8 }}>One-time ₹999 investment.</div>
             <div style={{ color: 'var(--gold)', fontSize: '1.05rem', marginBottom: 36 }}>Lifetime skill. Long-term income potential.</div>
-            <a href={ENROLL_LINK} className="btn-primary" style={{ fontSize: '1.1rem' }}>
+            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.1rem' }}>
               Invest in Yourself Today <ArrowRight size={18} />
             </a>
           </div>
@@ -888,7 +897,7 @@ export default function Home() {
           <p style={{ color: 'rgba(250,247,242,0.6)', fontSize: '1.05rem', marginBottom: 48, lineHeight: 1.7 }}>
             Seats are limited. The price of ₹999 won&apos;t last.<br />Start your digital career today with a single click.
           </p>
-          <a href={ENROLL_LINK} className="btn-primary" style={{ fontSize: '1.15rem', padding: '18px 52px' }}>
+          <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.15rem', padding: '18px 52px' }}>
             Enroll Now — Just ₹999 <ArrowRight size={20} />
           </a>
           <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', gap: 32, flexWrap: 'wrap' }}>
@@ -921,7 +930,7 @@ export default function Home() {
             <a href="#curriculum" className="footer-link">Curriculum</a>
             <a href="#mentor" className="footer-link">Mentor</a>
             <a href="#reviews" className="footer-link">Reviews</a>
-            <a href={ENROLL_LINK} className="footer-link-gold">Enroll Now →</a>
+            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="footer-link-gold">Enroll Now →</a>
           </div>
           <div style={{ color: 'rgba(250,247,242,0.3)', fontSize: '0.78rem', fontFamily: 'DM Mono, monospace' }}>
             © 2026 Devine Digital Academy · All rights reserved
