@@ -61,10 +61,10 @@ export const metadata: Metadata = {
     siteName: "Devine Digital Academy",
     images: [
       {
-        url: "https://devinedigitalacademy.co.in/devine_logo.png",
+        url: "https://devinedigitalacademy.co.in/devine_og_banner.png",
         width: 1200,
         height: 630,
-        alt: "Devine Digital Academy Logo — Digital Marketing Course",
+        alt: "Devine Digital Academy — Master Digital Marketing & Freelancing",
       },
     ],
     locale: "en_IN",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Learn Digital Marketing for just ₹999 | Devine Digital Academy",
     description: "High-income skills (Facebook Ads, Google Ads, Lead Gen) taught by Mr. Vivek Maurya. 30 lessons, Hindi medium. Start your freelancing career today.",
-    images: ["https://devinedigitalacademy.co.in/devine_logo.png"],
+    images: ["https://devinedigitalacademy.co.in/devine_og_banner.png"],
   },
   robots: {
     index: true,
