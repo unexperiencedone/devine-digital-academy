@@ -282,15 +282,15 @@ export default function Home() {
   ];
 
   const reviews: Array<{ name: string; text: string; date: string; link?: string }> = [
-    { name: "Lakhwinder Chouhan", text: "Devine academy offers an excellent experience for students. The curriculum is very relevant and covers important topics.", date: "Google Review" },
-    { name: "Nilofar digital", text: "My experience at devine academy was exceptional the curriculum was robust and engaging for all students", date: "Google Review" },
-    { name: "Rajnish Goyal", text: "I did a digital marketing course from them and i landed a consultancy job in the same field, Great experience.", date: "Google Review" },
-    { name: "Parveen Garg", text: "Thankyou Devine Digital Academy. I have learnt a Digital Marketing Couse. I'm working as a freelance and learn 50,000 per month.", date: "Google Review" },
-    { name: "Twinkle Garg", text: "Maine yaha c Digital Marketing ka course sikha hai...Trainers are very good...main as a Social Media Manager work Kar Rahi hu...thank you devine Digital academy.", date: "Google Review" },
-    { name: "amisha goyal", text: "Outstanding digital marketing course! The mentor is highly knowledgeable, and the support is top-notch.", date: "Google Review" },
-    { name: "Satyam Kumar Maurya", text: "Great learning experience. Practical ad setup and lead generation strategies were very useful.", date: "Google Review" },
-    { name: "Neelu Khan", text: "Very affordable course compared to others. Highly recommended for work from home options.", date: "Google Review" },
-    { name: "Isha Kaushik", text: "The certification program is great and Vivek sir explains everything in a very simple language.", date: "Google Review" }
+    { name: "Lakhwinder Chouhan", text: "Devine academy offers an excellent experience for students. The curriculum is very relevant and covers important topics.", date: "Google Review" , link: "https://share.google/7NA7TrE2df5UV6h5l"},
+    { name: "Nilofar digital", text: "My experience at devine academy was exceptional the curriculum was robust and engaging for all students", date: "Google Review", link: "https://share.google/NWZmxz6xDb8LrVHsV" },
+    { name: "Rajnish Goyal", text: "I did a digital marketing course from them and i landed a consultancy job in the same field, Great experience.", date: "Google Review", link: "https://share.google/mNayxJEt1oPx0xgNz" },
+    { name: "Parveen Garg", text: "Thankyou Devine Digital Academy. I have learnt a Digital Marketing Couse. I'm working as a freelance and learn 50,000 per month.", date: "Google Review", link: "https://share.google/1B54eWxdQgK4U6hCm" },
+    { name: "Twinkle Garg", text: "Maine yaha c Digital Marketing ka course sikha hai...Trainers are very good...main as a Social Media Manager work Kar Rahi hu...thank you devine Digital academy.", date: "Google Review", link: "https://share.google/fJUilsYdFn37eirAm" },
+    { name: "amisha goyal", text: "Outstanding digital marketing course! The mentor is highly knowledgeable, and the support is top-notch.", date: "Google Review", link: "https://share.google/1f27tffrhrLYkB9Q3" },
+    { name: "Satyam Kumar Maurya", text: "Great learning experience. Practical ad setup and lead generation strategies were very useful.", date: "Google Review", link: "https://share.google/tWgSHh0jReLHnXBAn" },
+    { name: "Neelu Khan", text: "Very affordable course compared to others. Highly recommended for work from home options.", date: "Google Review", link: "https://share.google/8NVIw0pFpn2dAcrCv" },
+    { name: "Isha Kaushik", text: "The certification program is great and Vivek sir explains everything in a very simple language.", date: "Google Review", link: "https://share.google/1f27tffrhrLYkB9Q3" }
   ];
 
   return (
