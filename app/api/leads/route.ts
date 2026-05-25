@@ -13,9 +13,14 @@ export async function POST(request: Request) {
       );
     }
 
+    console.log("Incoming serverless lead submission:", { name, phone, email });
+
     const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
     
     if (webhookUrl) {
+      const maskedUrl = webhookUrl.substring(0, 35) + "..." + (webhookUrl.includes("/exec") ? "/exec" : "");
+      console.log("Forwarding lead to Google Sheets webhook at:", maskedUrl);
+      
       const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
@@ -29,11 +34,15 @@ export async function POST(request: Request) {
         }),
       });
 
+      console.log("Google Sheets response status:", response.status, response.statusText);
+      const resText = await response.text();
+      console.log("Google Sheets response body:", resText);
+
       if (!response.ok) {
         console.error("Failed to forward lead to Google Sheets webhook:", response.statusText);
       }
     } else {
-      console.warn("GOOGLE_SHEETS_WEBHOOK_URL environment variable is not defined. Lead printed locally:", { name, phone, email });
+      console.warn("GOOGLE_SHEETS_WEBHOOK_URL environment variable is NOT defined. Check your .env file.");
     }
 
     // Return success to the client so that the checkout flow is never blocked
