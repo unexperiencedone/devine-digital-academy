@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   ArrowRight, CheckCircle2, BookOpen, Award,
-  Shield, Globe, ChevronDown
+  Shield, Globe, ChevronDown, X, Lock
 } from "lucide-react";
 
 const ENROLL_LINK = "https://rzp.io/rzp/G9oTVv8Z";
@@ -14,6 +14,24 @@ export default function Home() {
   const [copiedCaption, setCopiedCaption] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
   const [activeVideos, setActiveVideos] = useState<Record<string, boolean>>({});
+
+  // Modal & Lead Form States
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [leadForm, setLeadForm] = useState({ name: "", phone: "", email: "" });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
 
   const renderVideo = (videoId: string, title: string, aspectRatio: string = "56.25%") => {
     const isPlay = activeVideos[videoId];
@@ -73,6 +91,69 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const openEnrollModal = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    setIsModalOpen(true);
+    setFormErrors({});
+  };
+
+  const closeEnrollModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLeadForm(prev => ({ ...prev, [name]: value }));
+    if (formErrors[name]) {
+      setFormErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errors: Record<string, string> = {};
+    if (!leadForm.name.trim()) {
+      errors.name = "Full name is required";
+    }
+    const phoneRegex = /^[0-9]{10}$/;
+    const cleanPhone = leadForm.phone.replace(/[^0-9]/g, "");
+    if (!cleanPhone) {
+      errors.phone = "Phone number is required";
+    } else if (!phoneRegex.test(cleanPhone)) {
+      errors.phone = "Enter a valid 10-digit phone number";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!leadForm.email.trim()) {
+      errors.email = "Email address is required";
+    } else if (!emailRegex.test(leadForm.email.trim())) {
+      errors.email = "Enter a valid email address";
+    }
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const existingLeadsStr = localStorage.getItem("dda_leads");
+      const leads = existingLeadsStr ? JSON.parse(existingLeadsStr) : [];
+      leads.push({
+        ...leadForm,
+        phone: cleanPhone,
+        timestamp: new Date().toISOString(),
+      });
+      localStorage.setItem("dda_leads", JSON.stringify(leads));
+    } catch (err) {
+      console.error("Error saving lead:", err);
+    }
+    trackEnrollClick();
+    const prefilledUrl = `${ENROLL_LINK}?prefill[name]=${encodeURIComponent(leadForm.name)}&prefill[email]=${encodeURIComponent(leadForm.email)}&prefill[contact]=${encodeURIComponent(cleanPhone)}`;
+    window.location.href = prefilledUrl;
+  };
 
   const siteUrl = "https://devinedigitalacademy.co.in";
 
@@ -212,7 +293,7 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
             <a href="#curriculum" className="nav-link">Curriculum</a>
             <a href="#mentor" className="nav-link">Mentor</a>
-            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary nav-enroll-btn" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
+            <a href="#" onClick={openEnrollModal} className="btn-primary nav-enroll-btn" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
               Enroll — ₹999
             </a>
           </div>
@@ -274,7 +355,7 @@ export default function Home() {
                 ))}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-                <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.1rem', padding: '16px 44px' }}>
+                <a href="#" onClick={openEnrollModal} className="btn-primary" style={{ fontSize: '1.1rem', padding: '16px 44px' }}>
                   Enroll Now — Just ₹999 <ArrowRight size={18} />
                 </a>
                 <div style={{ color: 'rgba(250,247,242,0.5)', fontSize: '0.85rem' }}>
@@ -390,7 +471,7 @@ export default function Home() {
               <p style={{ color: 'rgba(250,247,242,0.65)', lineHeight: 1.75, marginBottom: 32 }}>
                 Every module is built around practical execution. You learn by doing, watching real campaigns, and following step-by-step systems that work in the Indian market.
               </p>
-              <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary">
+              <a href="#" onClick={openEnrollModal} className="btn-primary">
                 Start Learning — ₹999 <ArrowRight size={16} />
               </a>
             </div>
@@ -553,7 +634,7 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginTop: 56 }}>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', color: 'var(--warm-white)', marginBottom: 8 }}>One-time ₹999 investment.</div>
             <div style={{ color: 'var(--gold)', fontSize: '1.05rem', marginBottom: 36 }}>Lifetime skill. Long-term income potential.</div>
-            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.1rem' }}>
+            <a href="#" onClick={openEnrollModal} className="btn-primary" style={{ fontSize: '1.1rem' }}>
               Invest in Yourself Today <ArrowRight size={18} />
             </a>
           </div>
@@ -950,7 +1031,7 @@ export default function Home() {
           <p style={{ color: 'rgba(250,247,242,0.6)', fontSize: '1.05rem', marginBottom: 48, lineHeight: 1.7 }}>
             Seats are limited. The price of ₹999 won&apos;t last.<br />Start your digital career today with a single click.
           </p>
-          <a href={ENROLL_LINK} onClick={trackEnrollClick} className="btn-primary" style={{ fontSize: '1.15rem', padding: '18px 52px' }}>
+          <a href="#" onClick={openEnrollModal} className="btn-primary" style={{ fontSize: '1.15rem', padding: '18px 52px' }}>
             Enroll Now — Just ₹999 <ArrowRight size={20} />
           </a>
           <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', gap: 32, flexWrap: 'wrap' }}>
@@ -983,7 +1064,7 @@ export default function Home() {
             <a href="#curriculum" className="footer-link">Curriculum</a>
             <a href="#mentor" className="footer-link">Mentor</a>
             <a href="#reviews" className="footer-link">Reviews</a>
-            <a href={ENROLL_LINK} onClick={trackEnrollClick} className="footer-link-gold">Enroll Now →</a>
+            <a href="#" onClick={openEnrollModal} className="footer-link-gold">Enroll Now →</a>
           </div>
           <div style={{ color: 'rgba(250,247,242,0.3)', fontSize: '0.78rem', fontFamily: 'DM Mono, monospace' }}>
             © 2026 Devine Digital Academy · All rights reserved
@@ -1000,10 +1081,97 @@ export default function Home() {
             <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--slate)', textDecoration: 'line-through' }}>₹10,000</span>
           </span>
         </div>
-        <a href={ENROLL_LINK} onClick={trackEnrollClick} className="sticky-mobile-cta-btn">
+        <a href="#" onClick={openEnrollModal} className="sticky-mobile-cta-btn">
           Enroll Now <ArrowRight size={14} />
         </a>
       </div>
+
+      {/* LEAD CAPTURE MODAL */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeEnrollModal}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <h3 className="modal-title">Complete Enrollment</h3>
+                <p className="modal-subtitle">Enter details to proceed to payment</p>
+              </div>
+              <button className="modal-close-btn" onClick={closeEnrollModal} aria-label="Close modal">
+                <X size={20} />
+              </button>
+            </div>
+            
+            <form onSubmit={handleFormSubmit} className="modal-body">
+              <div className="form-group">
+                <label htmlFor="modal-name" className="form-label">Full Name</label>
+                <input
+                  id="modal-name"
+                  type="text"
+                  name="name"
+                  value={leadForm.name}
+                  onChange={handleInputChange}
+                  className={`form-input ${formErrors.name ? 'input-error' : ''}`}
+                  placeholder="e.g. Rahul Sharma"
+                  autoComplete="name"
+                  required
+                />
+                {formErrors.name && (
+                  <span className="input-error-msg">{formErrors.name}</span>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="modal-phone" className="form-label">WhatsApp Number</label>
+                <input
+                  id="modal-phone"
+                  type="tel"
+                  name="phone"
+                  value={leadForm.phone}
+                  onChange={handleInputChange}
+                  className={`form-input ${formErrors.phone ? 'input-error' : ''}`}
+                  placeholder="e.g. 9876543210"
+                  autoComplete="tel"
+                  required
+                />
+                {formErrors.phone && (
+                  <span className="input-error-msg">{formErrors.phone}</span>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="modal-email" className="form-label">Email Address</label>
+                <input
+                  id="modal-email"
+                  type="email"
+                  name="email"
+                  value={leadForm.email}
+                  onChange={handleInputChange}
+                  className={`form-input ${formErrors.email ? 'input-error' : ''}`}
+                  placeholder="e.g. rahul@example.com"
+                  autoComplete="email"
+                  required
+                />
+                {formErrors.email && (
+                  <span className="input-error-msg">{formErrors.email}</span>
+                )}
+              </div>
+
+              <button type="submit" className="modal-submit-btn" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  "Processing..."
+                ) : (
+                  <>
+                    Pay Now — ₹999 <ArrowRight size={18} />
+                  </>
+                )}
+              </button>
+
+              <div className="security-badge">
+                <Lock size={12} style={{ color: 'var(--gold)', marginRight: 4 }} /> 256-Bit SSL Secure Payment Gateway
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
