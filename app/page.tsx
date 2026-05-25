@@ -312,7 +312,7 @@ export default function Home() {
             <a href="#curriculum" className="nav-link">Curriculum</a>
             <a href="#mentor" className="nav-link">Mentor</a>
             <a href="#" onClick={openEnrollModal} className="btn-primary nav-enroll-btn" style={{ padding: '10px 24px', fontSize: '0.9rem', animation: 'none' }}>
-              Enroll — ₹999
+              Register Now
             </a>
           </div>
         </div>
