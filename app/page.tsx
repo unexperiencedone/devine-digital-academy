@@ -170,6 +170,12 @@ export default function Home() {
 
     trackEnrollClick();
     const prefilledUrl = `${ENROLL_LINK}?prefill[name]=${encodeURIComponent(leadForm.name)}&prefill[email]=${encodeURIComponent(leadForm.email)}&prefill[contact]=${encodeURIComponent(cleanPhone)}`;
+    
+    // Reset form and modal states
+    setLeadForm({ name: "", phone: "", email: "" });
+    setIsSubmitting(false);
+    setIsModalOpen(false);
+
     window.location.href = prefilledUrl;
   };
 
@@ -1178,7 +1184,7 @@ export default function Home() {
                   "Processing..."
                 ) : (
                   <>
-                    Pay Now — ₹999 <ArrowRight size={18} />
+                    Enroll Now — ₹999 <ArrowRight size={18} />
                   </>
                 )}
               </button>
