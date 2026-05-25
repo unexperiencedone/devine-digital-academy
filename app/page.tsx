@@ -148,8 +148,26 @@ export default function Home() {
       });
       localStorage.setItem("dda_leads", JSON.stringify(leads));
     } catch (err) {
-      console.error("Error saving lead:", err);
+      console.error("Error saving lead locally:", err);
     }
+
+    // Post to Next.js serverless route handler to securely log to Google Sheets
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: leadForm.name,
+          phone: cleanPhone,
+          email: leadForm.email,
+        }),
+      });
+    } catch (err) {
+      console.error("Error sending lead to serverless backend:", err);
+    }
+
     trackEnrollClick();
     const prefilledUrl = `${ENROLL_LINK}?prefill[name]=${encodeURIComponent(leadForm.name)}&prefill[email]=${encodeURIComponent(leadForm.email)}&prefill[contact]=${encodeURIComponent(cleanPhone)}`;
     window.location.href = prefilledUrl;
