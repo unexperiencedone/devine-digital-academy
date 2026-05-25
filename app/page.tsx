@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 const ENROLL_LINK = "https://rzp.io/rzp/G9oTVv8Z";
+const GOOGLE_REVIEWS_URL = "https://search.google.com/local/reviews?placeid=ChIJeYV5yA_kDDkR8Z_Lh6s8aJc"; // Replace with your actual Google Business Place ID or review link
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -280,7 +281,7 @@ export default function Home() {
     { q: "Can I earn money after this course?", a: "Yes. The course is structured around practical, income-generating skills — running ads, getting clients, setting up freelance profiles, and closing deals. Many students start earning within weeks." },
   ];
 
-  const reviews = [
+  const reviews: Array<{ name: string; text: string; date: string; link?: string }> = [
     { name: "Lakhwinder Chouhan", text: "Devine academy offers an excellent experience for students. The curriculum is very relevant and covers important topics.", date: "Google Review" },
     { name: "Nilofar digital", text: "My experience at devine academy was exceptional the curriculum was robust and engaging for all students", date: "Google Review" },
     { name: "Rajnish Goyal", text: "I did a digital marketing course from them and i landed a consultancy job in the same field, Great experience.", date: "Google Review" },
@@ -694,7 +695,25 @@ export default function Home() {
                   </div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--ink)' }}>{rev.name}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--slate)', fontFamily: 'DM Mono, monospace' }}>{rev.date}</div>
+                    <a
+                      href={rev.link || GOOGLE_REVIEWS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        fontSize: '0.72rem',
+                        color: 'var(--gold)',
+                        fontFamily: 'DM Mono, monospace',
+                        textDecoration: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 3,
+                        transition: 'color 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--gold-light)'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--gold)'}
+                    >
+                      {rev.date} ↗
+                    </a>
                   </div>
                 </div>
               </div>
