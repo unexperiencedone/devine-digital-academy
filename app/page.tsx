@@ -1203,7 +1203,7 @@ export default function Home() {
                   "Processing..."
                 ) : (
                   <>
-                    Enroll Now — ₹999 <ArrowRight size={18} />
+                    Enroll Now <ArrowRight size={18} />
                   </>
                 )}
               </button>
